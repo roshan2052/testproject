@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    return "Cache is cleared";
+});
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'supersite/', 'as' => 'backend.supersite.','namespace' => 'Backend\Supersite\\','middleware' => ['web','auth']], function () {
+    Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
 });
