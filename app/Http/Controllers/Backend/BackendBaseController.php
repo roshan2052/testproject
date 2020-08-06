@@ -40,11 +40,6 @@ class BackendBaseController extends Controller
 
     }
 
-    protected function invalidRequest($message = 'Invalid Request !'){
-        request()->session()->flash('error_message',$message);
-        return redirect()->route($this->base_route);
-    }
-
     /**
      * @param Request $request
      * @param         $imageName

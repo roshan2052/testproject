@@ -30,5 +30,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'supersite/', 'as' => 'backend.supersite.','namespace' => 'Backend\Supersite\\','middleware' => ['web','auth']], function () {
-    Route::get('dashboard', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
+    Route::get('dashboard',     ['as' => 'dashboard.index',     'uses' => 'DashboardController@index']);
+
+    //Test
+    Route::get('test',                                       ['as' => 'test.index',                           'uses' => 'TestController@index']);
+    Route::get('test/create',                                ['as' => 'test.create',                          'uses' => 'TestController@create']);
+    Route::post('test/',                                     ['as' => 'test.store',                           'uses' => 'TestController@store']);
+    Route::get('test/{id}/edit',                             ['as' => 'test.edit',                            'uses' => 'TestController@edit']);
+    Route::get('test/{id}',                                  ['as' => 'test.show',                            'uses' => 'TestController@show']);
+    Route::put('test/{id}/update',                           ['as' => 'test.update',                          'uses' => 'TestController@update']);
+    Route::delete('test/{id}/delete',                        ['as' => 'test.delete',                          'uses' => 'TestController@destroy']);
+
+
 });
