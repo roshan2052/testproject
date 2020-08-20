@@ -1,11 +1,11 @@
 @extends('backend.supersite.layouts.master')
-@section('title', $page_title)
+@section('title', $panel)
 @section('content')
 <div class="col-lg-12">
   <div class="card">
     <!-- card-body start -->
     <div class="card-body">
-      <h4 class="mb-3 header-title">{{$page_title}}
+      <h4 class="mb-3 header-title">{{$panel}}
 {{--        @if (hasPermission('list action'))--}}
           <a href="{{route($base_route . '.index')}}" class="btn btn-success custom_btn_cl">List</a>
 {{--        @endif--}}

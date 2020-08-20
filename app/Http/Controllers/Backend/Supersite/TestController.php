@@ -7,6 +7,7 @@ use App\Models\Backend\Test;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\Backend\SuperSite\TestRequest;
 
 class TestController extends BackendBaseController
 {
@@ -38,14 +39,15 @@ class TestController extends BackendBaseController
 
     }
 
-    public function store(Request $request){
+    public function store(TestRequest $request){
 
         $request->request->add(['created_by' => auth()->user()->id]);
         try {
             $row = $this->model::create($request->all());
-            $request->session()->flash($this->success_message, $this->panel.'Created Successfully');
-        } catch (\Exception $e) {
-            $request->session()->flash($this->error_message, $this->panel.'Create Failed');
+            $request->session()->flash($this->success_message, $this->panel. 'Created Successfully');
+        } 
+        catch (\Exception $e) {
+            $request->session()->flash($this->error_message, $this->panel. 'Create Failed');
         }
         return redirect()->route($this->base_route.'.index');
 
@@ -66,7 +68,7 @@ class TestController extends BackendBaseController
 
     }
 
-    public function update(Request $request, $id){
+    public function update(TestRequest $request, $id){
 
         $row = $this->model::findOrFail($id);
         $request->request->add(['updated_by' => auth()->user()->id]);
@@ -74,7 +76,8 @@ class TestController extends BackendBaseController
         try {
             $row->update($request->all());
             $request->session()->flash($this->success_message, $this->panel.'Updated Successfully');
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) {
             $request->session()->flash($this->error_message, $this->panel.'Update Failed');
         }
         return redirect()->route($this->base_route.'.index');
@@ -86,12 +89,13 @@ class TestController extends BackendBaseController
         $row = $this->model::findOrFail($id);
         try {
             $row->delete();
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) {
             return response(['success' => false, 'has_child' => true], 200);
         }
         $request->session()->flash($this->success_message, $this->panel.' Successfully Deleted');
 
-        return response(['success' => true, 'has_child' => false], 200);
+        return back();
 
     }
 }

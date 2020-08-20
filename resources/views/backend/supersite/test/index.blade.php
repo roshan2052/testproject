@@ -1,5 +1,5 @@
 @extends('backend.supersite.layouts.master')
-@section('title', 'This is page title')
+@section('title', 'List'.' '.$panel )
 @section('css')
     <link rel="stylesheet" href="{{asset('./backend/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('./backend/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -39,8 +39,13 @@
 @section('content')
     <div class="col-lg-12">
         <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">List {{ $panel }}</h4>
+                <a href="{{ route($base_route.'.create') }}" class="btn btn-success float-sm-right">Create</a>
+            </div>
             <div class="card-body">
-                <table id="example1" class="table table-striped">
+                 @include('includes.flash_message')
+                <table id="example1" class="table table-striped table-hover">
                     <thead>
                     <tr>
                         <th>S.N.</th>
@@ -64,9 +69,11 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="#">View</a>
-                                <a class="btn btn-info btn-sm" href="#">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="#">Delete</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route($base_route.'.show', ['id' => $row->id]) }}">View</a>
+                                <a class="btn btn-info btn-sm" href="{{ route($base_route.'.edit', ['id' => $row->id]) }}">Edit</a>
+                                {!! Form::open(['route' => [$base_route.'.delete', $row->id], 'method' => 'delete']) !!}
+                                    <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm " title="Delete">Delete</button>
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                     @endforeach
@@ -77,3 +84,6 @@
         </div>
     </div>
 @endsection
+
+
+
