@@ -1,0 +1,49 @@
+body{
+    font-family: Poppins;
+}
+.user-panel{
+    padding: 35px 10px 20px 10px;
+}
+.content-wrapper{
+    padding: 10px 15px;
+}
+.box.box-primary{
+    padding: 15px;
+}
+.form-group span.mfield {
+    color: red;
+    margin-left: 3pt;
+}
+hr {
+    margin:0px;
+    border: 0;
+    border-top: 2px solid #439ba3;
+}
+.form{
+    margin-left: -32px;
+    margin-bottom: 25px;
+}
+table th {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 6px 14px;
+}
+
+.user-footer{
+    background: #00a65a;
+}
+.user-header > p{
+    /*color: blue;*/
+}
+.form_class{
+    padding-top: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-left: 1.25rem;
+}
+.nav_color{
+    background-color: #17a2b8;
+}
+.user-header{
+  background-color: #00a65a;
+}

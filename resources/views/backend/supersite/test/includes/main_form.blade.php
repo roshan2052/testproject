@@ -1,5 +1,5 @@
 @if($page == 'create')
-{!! Form::open(['route' => $route, 'method' => $method,  'files' => $files , 'class' => 'form-horizontal data-parsley-validate custom_form']) !!}
+{!! Form::open(['route' => $route, 'method' => $method,  'files' => $files , 'class' => 'form-horizontal form_class']) !!}
 @else
   {!! Form::model($data['row'],['route' => [$route, $data['row']->id], 'method' => $method,'files' => $files]) !!}
 @endif

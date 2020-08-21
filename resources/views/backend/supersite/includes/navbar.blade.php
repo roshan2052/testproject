@@ -1,5 +1,18 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light nav_color">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
@@ -87,6 +100,37 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
+        <li class="dropdown user user-menu">
+          <a href="#" class="nav-link" data-toggle="dropdown">
+            {{-- <img src="" class="user-image" alt=""> --}}
+            <i class="fas fa-user"></i>
+            <span>{{ ucwords(auth()->user()->name) }}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header">
+              <img src="http://localhost:8000/./backend/assets/dist/img/user2-160x160.jpg"" class="img-circle" alt="">
+              <p> {{ ucwords(auth()->user()->name) }} <small>Member Since {{ auth()->user()->created_at->toFormattedDateString() }} </small></p>
+            </li>
+
+            <!-- Menu Footer-->
+            <li class="user-footer">
+              <div class="float-left">
+                <a href="" class="btn btn-default btn-flat">Profile</a>
+              </div>
+              <div class="float-right">
+                <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-default btn-flat"> 
+                    Sign Out
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <input name="_token" value="{{ csrf_token() }}" type="hidden">
+                </form>
+              </div>
+            </li>
+          </ul>
+        </li>
+
     </ul>
 </nav>
 <!-- /.navbar -->
